@@ -24,7 +24,7 @@ public class TimeServer {
     }
 
     public void run() throws Exception {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap b = new ServerBootstrap();
@@ -34,7 +34,7 @@ public class TimeServer {
 
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new TimeEncoder(),new TimeServerHandler());
+                        ch.pipeline().addLast(new TimeEncoder(), new TimeServerHandler());
                     }
                 }).option(ChannelOption.SO_BACKLOG, 128)
                 .childOption(ChannelOption.SO_KEEPALIVE, true);
