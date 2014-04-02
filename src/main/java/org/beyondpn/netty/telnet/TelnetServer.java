@@ -31,7 +31,7 @@ public class TelnetServer {
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_KEEPALIVE, true)
                     .option(ChannelOption.SO_BACKLOG, 100)
-                    .childHandler(new TelnetServerClientHandlerInitial());
+                    .childHandler(new TelnetServerHandlerInitial());
 
             ChannelFuture bindFuture = b.bind(port).sync();
 
